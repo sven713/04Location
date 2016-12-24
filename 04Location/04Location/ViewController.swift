@@ -37,16 +37,16 @@ class ViewController: UIViewController,CLLocationManagerDelegate { // 代理不�
 //        CLGeocoder().reverseGeocodeLocation(manager.location!) { (placeMark, error) in
 //            if placeMark?.count > 0{
 //                let pm = placeMark![0]
-//                let city = pm.locality
-//                let country = pm.country
-//                let postCode = pm.postalCode
-//                self.locationInfoLabel.text = city! + country! + postCode!
+//                let city = pm.locality!
+//                let country = pm.country!
+////                let postCode = pm.postalCode // postalCode可能没有,直接这样写会崩溃
+//                self.locationInfoLabel.text = city + country
 //            }
 //        }
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
             if placemarks?.count > 0{
                 let pm = placemarks![0]
-                let city = pm.locality! // 上面的写法不行,必须写个!
+                let city = pm.locality! // 必须写个!
 //                let country = pm.country!
                 let subLocalCity = pm.subLocality != nil ? pm.subLocality : ""
                 let postCode = pm.postalCode != nil ? pm.postalCode : ""
